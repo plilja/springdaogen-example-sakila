@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+    pagila:
+        build: ./sakila
+        ports:
+            - "8080:80"
+            - "5002:5002"
+        depends_on:
+            - db
+
+    db:
+        build: ./sakila-db
+        ports:
+           - "3306:3306"
