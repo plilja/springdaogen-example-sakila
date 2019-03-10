@@ -2,7 +2,7 @@
 
 An example project showing how a REST API can be created 
 using [spring-dao-codegen](https://github.com/plilja/spring-dao-codegen) from
-the MySQL [Sakila database](https://dev.mysql.com/doc/sakila/en/).
+the MySQL [Sakila example database](https://dev.mysql.com/doc/sakila/en/).
 
 The code in the packages 'model' and 'dbframework' has been generated.
 
