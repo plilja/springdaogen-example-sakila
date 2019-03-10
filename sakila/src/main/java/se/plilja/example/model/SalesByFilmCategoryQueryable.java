@@ -32,7 +32,7 @@ public class SalesByFilmCategoryQueryable extends Queryable<SalesByFilmCategory>
 
     @Autowired
     public SalesByFilmCategoryQueryable(NamedParameterJdbcTemplate jdbcTemplate) {
-        super(jdbcTemplate);
+        super(SalesByFilmCategory.class, jdbcTemplate);
     }
 
     @Override

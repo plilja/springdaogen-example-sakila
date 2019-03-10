@@ -44,7 +44,7 @@ public class StoreDao extends Dao<Store, Integer> {
 
     @Autowired
     public StoreDao(NamedParameterJdbcTemplate jdbcTemplate, CurrentUserProvider currentUserProvider) {
-        super(Integer.class, true, jdbcTemplate, currentUserProvider);
+        super(Store.class, Integer.class, true, jdbcTemplate, currentUserProvider);
     }
 
     @Override

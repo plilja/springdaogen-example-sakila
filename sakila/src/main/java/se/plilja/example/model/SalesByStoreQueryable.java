@@ -36,7 +36,7 @@ public class SalesByStoreQueryable extends Queryable<SalesByStore> {
 
     @Autowired
     public SalesByStoreQueryable(NamedParameterJdbcTemplate jdbcTemplate) {
-        super(jdbcTemplate);
+        super(SalesByStore.class, jdbcTemplate);
     }
 
     @Override

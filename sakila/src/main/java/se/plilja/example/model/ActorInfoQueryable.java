@@ -39,7 +39,7 @@ public class ActorInfoQueryable extends Queryable<ActorInfo> {
 
     @Autowired
     public ActorInfoQueryable(NamedParameterJdbcTemplate jdbcTemplate) {
-        super(jdbcTemplate);
+        super(ActorInfo.class, jdbcTemplate);
     }
 
     @Override

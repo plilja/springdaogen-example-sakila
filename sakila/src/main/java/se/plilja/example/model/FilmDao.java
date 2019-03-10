@@ -83,7 +83,7 @@ public class FilmDao extends Dao<Film, Integer> {
 
     @Autowired
     public FilmDao(NamedParameterJdbcTemplate jdbcTemplate, CurrentUserProvider currentUserProvider) {
-        super(Integer.class, true, jdbcTemplate, currentUserProvider);
+        super(Film.class, Integer.class, true, jdbcTemplate, currentUserProvider);
     }
 
     @Override

@@ -80,7 +80,7 @@ public class StaffDao extends Dao<Staff, Integer> {
 
     @Autowired
     public StaffDao(NamedParameterJdbcTemplate jdbcTemplate, CurrentUserProvider currentUserProvider) {
-        super(Integer.class, true, jdbcTemplate, currentUserProvider);
+        super(Staff.class, Integer.class, true, jdbcTemplate, currentUserProvider);
     }
 
     @Override

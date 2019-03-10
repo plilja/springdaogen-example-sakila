@@ -65,7 +65,7 @@ public class AddressDao extends Dao<Address, Integer> {
 
     @Autowired
     public AddressDao(NamedParameterJdbcTemplate jdbcTemplate, CurrentUserProvider currentUserProvider) {
-        super(Integer.class, true, jdbcTemplate, currentUserProvider);
+        super(Address.class, Integer.class, true, jdbcTemplate, currentUserProvider);
     }
 
     @Override

@@ -65,7 +65,7 @@ public class CustomerDao extends Dao<Customer, Integer> {
 
     @Autowired
     public CustomerDao(NamedParameterJdbcTemplate jdbcTemplate, CurrentUserProvider currentUserProvider) {
-        super(Integer.class, true, jdbcTemplate, currentUserProvider);
+        super(Customer.class, Integer.class, true, jdbcTemplate, currentUserProvider);
     }
 
     @Override

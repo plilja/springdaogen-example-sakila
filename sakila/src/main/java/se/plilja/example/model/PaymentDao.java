@@ -58,7 +58,7 @@ public class PaymentDao extends Dao<Payment, Integer> {
 
     @Autowired
     public PaymentDao(NamedParameterJdbcTemplate jdbcTemplate, CurrentUserProvider currentUserProvider) {
-        super(Integer.class, true, jdbcTemplate, currentUserProvider);
+        super(Payment.class, Integer.class, true, jdbcTemplate, currentUserProvider);
     }
 
     @Override

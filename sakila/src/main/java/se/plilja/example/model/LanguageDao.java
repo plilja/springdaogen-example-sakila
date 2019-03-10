@@ -40,7 +40,7 @@ public class LanguageDao extends Dao<Language, Integer> {
 
     @Autowired
     public LanguageDao(NamedParameterJdbcTemplate jdbcTemplate, CurrentUserProvider currentUserProvider) {
-        super(Integer.class, true, jdbcTemplate, currentUserProvider);
+        super(Language.class, Integer.class, true, jdbcTemplate, currentUserProvider);
     }
 
     @Override

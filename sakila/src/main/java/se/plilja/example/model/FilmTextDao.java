@@ -39,7 +39,7 @@ public class FilmTextDao extends Dao<FilmText, Integer> {
 
     @Autowired
     public FilmTextDao(NamedParameterJdbcTemplate jdbcTemplate, CurrentUserProvider currentUserProvider) {
-        super(Integer.class, false, jdbcTemplate, currentUserProvider);
+        super(FilmText.class, Integer.class, false, jdbcTemplate, currentUserProvider);
     }
 
     @Override

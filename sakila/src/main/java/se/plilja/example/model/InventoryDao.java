@@ -44,7 +44,7 @@ public class InventoryDao extends Dao<Inventory, Integer> {
 
     @Autowired
     public InventoryDao(NamedParameterJdbcTemplate jdbcTemplate, CurrentUserProvider currentUserProvider) {
-        super(Integer.class, true, jdbcTemplate, currentUserProvider);
+        super(Inventory.class, Integer.class, true, jdbcTemplate, currentUserProvider);
     }
 
     @Override

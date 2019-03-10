@@ -44,7 +44,7 @@ public class CityDao extends Dao<City, Integer> {
 
     @Autowired
     public CityDao(NamedParameterJdbcTemplate jdbcTemplate, CurrentUserProvider currentUserProvider) {
-        super(Integer.class, true, jdbcTemplate, currentUserProvider);
+        super(City.class, Integer.class, true, jdbcTemplate, currentUserProvider);
     }
 
     @Override

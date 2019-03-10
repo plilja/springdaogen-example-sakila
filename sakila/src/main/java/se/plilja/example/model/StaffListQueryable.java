@@ -56,7 +56,7 @@ public class StaffListQueryable extends Queryable<StaffList> {
 
     @Autowired
     public StaffListQueryable(NamedParameterJdbcTemplate jdbcTemplate) {
-        super(jdbcTemplate);
+        super(StaffList.class, jdbcTemplate);
     }
 
     @Override

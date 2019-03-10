@@ -44,7 +44,7 @@ public class ActorDao extends Dao<Actor, Integer> {
 
     @Autowired
     public ActorDao(NamedParameterJdbcTemplate jdbcTemplate, CurrentUserProvider currentUserProvider) {
-        super(Integer.class, true, jdbcTemplate, currentUserProvider);
+        super(Actor.class, Integer.class, true, jdbcTemplate, currentUserProvider);
     }
 
     @Override

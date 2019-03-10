@@ -57,7 +57,7 @@ public class RentalDao extends Dao<Rental, Integer> {
 
     @Autowired
     public RentalDao(NamedParameterJdbcTemplate jdbcTemplate, CurrentUserProvider currentUserProvider) {
-        super(Integer.class, true, jdbcTemplate, currentUserProvider);
+        super(Rental.class, Integer.class, true, jdbcTemplate, currentUserProvider);
     }
 
     @Override

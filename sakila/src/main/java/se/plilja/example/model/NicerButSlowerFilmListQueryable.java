@@ -57,7 +57,7 @@ public class NicerButSlowerFilmListQueryable extends Queryable<NicerButSlowerFil
 
     @Autowired
     public NicerButSlowerFilmListQueryable(NamedParameterJdbcTemplate jdbcTemplate) {
-        super(jdbcTemplate);
+        super(NicerButSlowerFilmList.class, jdbcTemplate);
     }
 
     @Override

@@ -57,7 +57,7 @@ public class FilmListQueryable extends Queryable<FilmList> {
 
     @Autowired
     public FilmListQueryable(NamedParameterJdbcTemplate jdbcTemplate) {
-        super(jdbcTemplate);
+        super(FilmList.class, jdbcTemplate);
     }
 
     @Override

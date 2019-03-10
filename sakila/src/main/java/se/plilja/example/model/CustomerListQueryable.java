@@ -60,7 +60,7 @@ public class CustomerListQueryable extends Queryable<CustomerList> {
 
     @Autowired
     public CustomerListQueryable(NamedParameterJdbcTemplate jdbcTemplate) {
-        super(jdbcTemplate);
+        super(CustomerList.class, jdbcTemplate);
     }
 
     @Override

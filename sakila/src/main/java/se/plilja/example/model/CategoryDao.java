@@ -40,7 +40,7 @@ public class CategoryDao extends Dao<Category, Integer> {
 
     @Autowired
     public CategoryDao(NamedParameterJdbcTemplate jdbcTemplate, CurrentUserProvider currentUserProvider) {
-        super(Integer.class, true, jdbcTemplate, currentUserProvider);
+        super(Category.class, Integer.class, true, jdbcTemplate, currentUserProvider);
     }
 
     @Override

@@ -40,7 +40,7 @@ public class CountryDao extends Dao<Country, Integer> {
 
     @Autowired
     public CountryDao(NamedParameterJdbcTemplate jdbcTemplate, CurrentUserProvider currentUserProvider) {
-        super(Integer.class, true, jdbcTemplate, currentUserProvider);
+        super(Country.class, Integer.class, true, jdbcTemplate, currentUserProvider);
     }
 
     @Override
