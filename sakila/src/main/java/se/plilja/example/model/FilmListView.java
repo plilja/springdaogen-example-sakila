@@ -11,25 +11,25 @@ import se.plilja.example.dbframework.Column;
 import se.plilja.example.dbframework.Queryable;
 
 @Repository
-public class NicerButSlowerFilmListQueryable extends Queryable<NicerButSlowerFilmList> {
+public class FilmListView extends Queryable<FilmList> {
 
-    public static final Column.StringColumn<NicerButSlowerFilmList> COLUMN_ACTORS = new Column.StringColumn<>("actors", "actors");
+    public static final Column.StringColumn<FilmList> COLUMN_ACTORS = new Column.StringColumn<>("actors", "actors");
 
-    public static final Column.StringColumn<NicerButSlowerFilmList> COLUMN_CATEGORY = new Column.StringColumn<>("category", "category");
+    public static final Column.StringColumn<FilmList> COLUMN_CATEGORY = new Column.StringColumn<>("category", "category");
 
-    public static final Column.StringColumn<NicerButSlowerFilmList> COLUMN_DESCRIPTION = new Column.StringColumn<>("description", "`description`", "description");
+    public static final Column.StringColumn<FilmList> COLUMN_DESCRIPTION = new Column.StringColumn<>("description", "`description`", "description");
 
-    public static final Column.IntColumn<NicerButSlowerFilmList> COLUMN_FID = new Column.IntColumn<>("FID", "fid");
+    public static final Column.IntColumn<FilmList> COLUMN_FID = new Column.IntColumn<>("FID", "fid");
 
-    public static final Column.IntColumn<NicerButSlowerFilmList> COLUMN_LENGTH = new Column.IntColumn<>("length", "length");
+    public static final Column.IntColumn<FilmList> COLUMN_LENGTH = new Column.IntColumn<>("length", "length");
 
-    public static final Column.BigDecimalColumn<NicerButSlowerFilmList> COLUMN_PRICE = new Column.BigDecimalColumn<>("price", "price");
+    public static final Column.BigDecimalColumn<FilmList> COLUMN_PRICE = new Column.BigDecimalColumn<>("price", "price");
 
-    public static final Column.StringColumn<NicerButSlowerFilmList> COLUMN_RATING = new Column.StringColumn<>("rating", "rating");
+    public static final Column.StringColumn<FilmList> COLUMN_RATING = new Column.StringColumn<>("rating", "rating");
 
-    public static final Column.StringColumn<NicerButSlowerFilmList> COLUMN_TITLE = new Column.StringColumn<>("title", "title");
+    public static final Column.StringColumn<FilmList> COLUMN_TITLE = new Column.StringColumn<>("title", "title");
 
-    public static final List<Column<NicerButSlowerFilmList, ?>> ALL_COLUMNS_LIST = Arrays.asList(
+    public static final List<Column<FilmList, ?>> ALL_COLUMNS_LIST = Arrays.asList(
             COLUMN_ACTORS,
             COLUMN_CATEGORY,
             COLUMN_DESCRIPTION,
@@ -42,8 +42,8 @@ public class NicerButSlowerFilmListQueryable extends Queryable<NicerButSlowerFil
     private static final String ALL_COLUMNS = " actors, category, `description`, FID, length, " +
             " price, rating, title ";
 
-    private static final RowMapper<NicerButSlowerFilmList> ROW_MAPPER = (rs, i) -> {
-        NicerButSlowerFilmList r = new NicerButSlowerFilmList();
+    private static final RowMapper<FilmList> ROW_MAPPER = (rs, i) -> {
+        FilmList r = new FilmList();
         r.setActors(rs.getString("actors"));
         r.setCategory(rs.getString("category"));
         r.setDescription(rs.getString("description"));
@@ -56,12 +56,12 @@ public class NicerButSlowerFilmListQueryable extends Queryable<NicerButSlowerFil
     };
 
     @Autowired
-    public NicerButSlowerFilmListQueryable(NamedParameterJdbcTemplate jdbcTemplate) {
-        super(NicerButSlowerFilmList.class, jdbcTemplate);
+    public FilmListView(NamedParameterJdbcTemplate jdbcTemplate) {
+        super(FilmList.class, jdbcTemplate);
     }
 
     @Override
-    protected RowMapper<NicerButSlowerFilmList> getRowMapper() {
+    protected RowMapper<FilmList> getRowMapper() {
         return ROW_MAPPER;
     }
 
@@ -69,17 +69,17 @@ public class NicerButSlowerFilmListQueryable extends Queryable<NicerButSlowerFil
     protected String getSelectManySql(int maxSelectCount) {
         return String.format("SELECT " +
                 ALL_COLUMNS +
-                "FROM nicer_but_slower_film_list " +
+                "FROM film_list " +
                 "LIMIT %d", maxSelectCount);
     }
 
     @Override
     protected String getCountSql() {
-        return "SELECT COUNT(*) FROM nicer_but_slower_film_list";
+        return "SELECT COUNT(*) FROM film_list";
     }
 
     @Override
-    protected List<Column<NicerButSlowerFilmList, ?>> getColumnsList() {
+    protected List<Column<FilmList, ?>> getColumnsList() {
         return ALL_COLUMNS_LIST;
     }
 
@@ -87,7 +87,7 @@ public class NicerButSlowerFilmListQueryable extends Queryable<NicerButSlowerFil
     protected String getQueryOrderBySql(int maxAllowedCount, String whereClause, String orderBy) {
         return String.format("SELECT %n" +
                 ALL_COLUMNS +
-                "FROM nicer_but_slower_film_list %n" +
+                "FROM film_list %n" +
                 "WHERE 1=1 %s %n" +
                 "%s " +
                 "LIMIT %d", whereClause, orderBy, maxAllowedCount);
@@ -97,7 +97,7 @@ public class NicerButSlowerFilmListQueryable extends Queryable<NicerButSlowerFil
     protected String getQueryPageOrderBySql(long start, int pageSize, String whereClause, String orderBy) {
         return String.format("SELECT %n" +
                 ALL_COLUMNS +
-                "FROM nicer_but_slower_film_list %n" +
+                "FROM film_list %n" +
                 "WHERE 1=1 %s %n" +
                 "%s %n" +
                 "LIMIT %d OFFSET %d", whereClause, orderBy, pageSize, start);

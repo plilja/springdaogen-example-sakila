@@ -10,7 +10,7 @@ import se.plilja.example.dbframework.Column;
 import se.plilja.example.dbframework.Queryable;
 
 @Repository
-public class ActorInfoQueryable extends Queryable<ActorInfo> {
+public class ActorInfoView extends Queryable<ActorInfo> {
 
     public static final Column.IntColumn<ActorInfo> COLUMN_ACTOR_ID = new Column.IntColumn<>("actor_id", "actorId");
 
@@ -38,7 +38,7 @@ public class ActorInfoQueryable extends Queryable<ActorInfo> {
     };
 
     @Autowired
-    public ActorInfoQueryable(NamedParameterJdbcTemplate jdbcTemplate) {
+    public ActorInfoView(NamedParameterJdbcTemplate jdbcTemplate) {
         super(ActorInfo.class, jdbcTemplate);
     }
 

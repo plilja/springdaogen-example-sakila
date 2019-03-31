@@ -11,32 +11,36 @@ import se.plilja.example.dbframework.Column;
 import se.plilja.example.dbframework.Queryable;
 
 @Repository
-public class SalesByFilmCategoryQueryable extends Queryable<SalesByFilmCategory> {
+public class SalesByStoreView extends Queryable<SalesByStore> {
 
-    public static final Column.StringColumn<SalesByFilmCategory> COLUMN_CATEGORY = new Column.StringColumn<>("category", "category");
+    public static final Column.StringColumn<SalesByStore> COLUMN_MANAGER = new Column.StringColumn<>("manager", "manager");
 
-    public static final Column.BigDecimalColumn<SalesByFilmCategory> COLUMN_TOTAL_SALES = new Column.BigDecimalColumn<>("total_sales", "totalSales");
+    public static final Column.StringColumn<SalesByStore> COLUMN_STORE = new Column.StringColumn<>("store", "store");
 
-    public static final List<Column<SalesByFilmCategory, ?>> ALL_COLUMNS_LIST = Arrays.asList(
-            COLUMN_CATEGORY,
+    public static final Column.BigDecimalColumn<SalesByStore> COLUMN_TOTAL_SALES = new Column.BigDecimalColumn<>("total_sales", "totalSales");
+
+    public static final List<Column<SalesByStore, ?>> ALL_COLUMNS_LIST = Arrays.asList(
+            COLUMN_MANAGER,
+            COLUMN_STORE,
             COLUMN_TOTAL_SALES);
 
-    private static final String ALL_COLUMNS = " category, total_sales ";
+    private static final String ALL_COLUMNS = " manager, store, total_sales ";
 
-    private static final RowMapper<SalesByFilmCategory> ROW_MAPPER = (rs, i) -> {
-        SalesByFilmCategory r = new SalesByFilmCategory();
-        r.setCategory(rs.getString("category"));
+    private static final RowMapper<SalesByStore> ROW_MAPPER = (rs, i) -> {
+        SalesByStore r = new SalesByStore();
+        r.setManager(rs.getString("manager"));
+        r.setStore(rs.getString("store"));
         r.setTotalSales(rs.getBigDecimal("total_sales"));
         return r;
     };
 
     @Autowired
-    public SalesByFilmCategoryQueryable(NamedParameterJdbcTemplate jdbcTemplate) {
-        super(SalesByFilmCategory.class, jdbcTemplate);
+    public SalesByStoreView(NamedParameterJdbcTemplate jdbcTemplate) {
+        super(SalesByStore.class, jdbcTemplate);
     }
 
     @Override
-    protected RowMapper<SalesByFilmCategory> getRowMapper() {
+    protected RowMapper<SalesByStore> getRowMapper() {
         return ROW_MAPPER;
     }
 
@@ -44,17 +48,17 @@ public class SalesByFilmCategoryQueryable extends Queryable<SalesByFilmCategory>
     protected String getSelectManySql(int maxSelectCount) {
         return String.format("SELECT " +
                 ALL_COLUMNS +
-                "FROM sales_by_film_category " +
+                "FROM sales_by_store " +
                 "LIMIT %d", maxSelectCount);
     }
 
     @Override
     protected String getCountSql() {
-        return "SELECT COUNT(*) FROM sales_by_film_category";
+        return "SELECT COUNT(*) FROM sales_by_store";
     }
 
     @Override
-    protected List<Column<SalesByFilmCategory, ?>> getColumnsList() {
+    protected List<Column<SalesByStore, ?>> getColumnsList() {
         return ALL_COLUMNS_LIST;
     }
 
@@ -62,7 +66,7 @@ public class SalesByFilmCategoryQueryable extends Queryable<SalesByFilmCategory>
     protected String getQueryOrderBySql(int maxAllowedCount, String whereClause, String orderBy) {
         return String.format("SELECT %n" +
                 ALL_COLUMNS +
-                "FROM sales_by_film_category %n" +
+                "FROM sales_by_store %n" +
                 "WHERE 1=1 %s %n" +
                 "%s " +
                 "LIMIT %d", whereClause, orderBy, maxAllowedCount);
@@ -72,7 +76,7 @@ public class SalesByFilmCategoryQueryable extends Queryable<SalesByFilmCategory>
     protected String getQueryPageOrderBySql(long start, int pageSize, String whereClause, String orderBy) {
         return String.format("SELECT %n" +
                 ALL_COLUMNS +
-                "FROM sales_by_film_category %n" +
+                "FROM sales_by_store %n" +
                 "WHERE 1=1 %s %n" +
                 "%s %n" +
                 "LIMIT %d OFFSET %d", whereClause, orderBy, pageSize, start);

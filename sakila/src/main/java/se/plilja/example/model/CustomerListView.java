@@ -10,44 +10,48 @@ import se.plilja.example.dbframework.Column;
 import se.plilja.example.dbframework.Queryable;
 
 @Repository
-public class StaffListQueryable extends Queryable<StaffList> {
+public class CustomerListView extends Queryable<CustomerList> {
 
-    public static final Column.StringColumn<StaffList> COLUMN_ADDRESS = new Column.StringColumn<>("address", "address");
+    public static final Column.StringColumn<CustomerList> COLUMN_ADDRESS = new Column.StringColumn<>("address", "address");
 
-    public static final Column.StringColumn<StaffList> COLUMN_CITY = new Column.StringColumn<>("city", "city");
+    public static final Column.StringColumn<CustomerList> COLUMN_CITY = new Column.StringColumn<>("city", "city");
 
-    public static final Column.StringColumn<StaffList> COLUMN_COUNTRY = new Column.StringColumn<>("country", "country");
+    public static final Column.StringColumn<CustomerList> COLUMN_COUNTRY = new Column.StringColumn<>("country", "country");
 
-    public static final Column.IntColumn<StaffList> COLUMN_ID = new Column.IntColumn<>("ID", "id");
+    public static final Column.IntColumn<CustomerList> COLUMN_ID = new Column.IntColumn<>("ID", "id");
 
-    public static final Column.StringColumn<StaffList> COLUMN_NAME = new Column.StringColumn<>("name", "name");
+    public static final Column.StringColumn<CustomerList> COLUMN_NAME = new Column.StringColumn<>("name", "name");
 
-    public static final Column.StringColumn<StaffList> COLUMN_PHONE = new Column.StringColumn<>("phone", "phone");
+    public static final Column.StringColumn<CustomerList> COLUMN_NOTES = new Column.StringColumn<>("notes", "notes");
 
-    public static final Column.IntColumn<StaffList> COLUMN_SID = new Column.IntColumn<>("SID", "sid");
+    public static final Column.StringColumn<CustomerList> COLUMN_PHONE = new Column.StringColumn<>("phone", "phone");
 
-    public static final Column.StringColumn<StaffList> COLUMN_ZIP_CODE = new Column.StringColumn<>("zip code", "`zip code`", "zipCode");
+    public static final Column.IntColumn<CustomerList> COLUMN_SID = new Column.IntColumn<>("SID", "sid");
 
-    public static final List<Column<StaffList, ?>> ALL_COLUMNS_LIST = Arrays.asList(
+    public static final Column.StringColumn<CustomerList> COLUMN_ZIP_CODE = new Column.StringColumn<>("zip code", "`zip code`", "zipCode");
+
+    public static final List<Column<CustomerList, ?>> ALL_COLUMNS_LIST = Arrays.asList(
             COLUMN_ADDRESS,
             COLUMN_CITY,
             COLUMN_COUNTRY,
             COLUMN_ID,
             COLUMN_NAME,
+            COLUMN_NOTES,
             COLUMN_PHONE,
             COLUMN_SID,
             COLUMN_ZIP_CODE);
 
     private static final String ALL_COLUMNS = " address, city, country, ID, name, " +
-            " phone, SID, `zip code` ";
+            " notes, phone, SID, `zip code` ";
 
-    private static final RowMapper<StaffList> ROW_MAPPER = (rs, i) -> {
-        StaffList r = new StaffList();
+    private static final RowMapper<CustomerList> ROW_MAPPER = (rs, i) -> {
+        CustomerList r = new CustomerList();
         r.setAddress(rs.getString("address"));
         r.setCity(rs.getString("city"));
         r.setCountry(rs.getString("country"));
         r.setId(rs.getInt("ID"));
         r.setName(rs.getString("name"));
+        r.setNotes(rs.getString("notes"));
         r.setPhone(rs.getString("phone"));
         r.setSid(rs.getInt("SID"));
         r.setZipCode(rs.getString("zip code"));
@@ -55,12 +59,12 @@ public class StaffListQueryable extends Queryable<StaffList> {
     };
 
     @Autowired
-    public StaffListQueryable(NamedParameterJdbcTemplate jdbcTemplate) {
-        super(StaffList.class, jdbcTemplate);
+    public CustomerListView(NamedParameterJdbcTemplate jdbcTemplate) {
+        super(CustomerList.class, jdbcTemplate);
     }
 
     @Override
-    protected RowMapper<StaffList> getRowMapper() {
+    protected RowMapper<CustomerList> getRowMapper() {
         return ROW_MAPPER;
     }
 
@@ -68,17 +72,17 @@ public class StaffListQueryable extends Queryable<StaffList> {
     protected String getSelectManySql(int maxSelectCount) {
         return String.format("SELECT " +
                 ALL_COLUMNS +
-                "FROM staff_list " +
+                "FROM customer_list " +
                 "LIMIT %d", maxSelectCount);
     }
 
     @Override
     protected String getCountSql() {
-        return "SELECT COUNT(*) FROM staff_list";
+        return "SELECT COUNT(*) FROM customer_list";
     }
 
     @Override
-    protected List<Column<StaffList, ?>> getColumnsList() {
+    protected List<Column<CustomerList, ?>> getColumnsList() {
         return ALL_COLUMNS_LIST;
     }
 
@@ -86,7 +90,7 @@ public class StaffListQueryable extends Queryable<StaffList> {
     protected String getQueryOrderBySql(int maxAllowedCount, String whereClause, String orderBy) {
         return String.format("SELECT %n" +
                 ALL_COLUMNS +
-                "FROM staff_list %n" +
+                "FROM customer_list %n" +
                 "WHERE 1=1 %s %n" +
                 "%s " +
                 "LIMIT %d", whereClause, orderBy, maxAllowedCount);
@@ -96,7 +100,7 @@ public class StaffListQueryable extends Queryable<StaffList> {
     protected String getQueryPageOrderBySql(long start, int pageSize, String whereClause, String orderBy) {
         return String.format("SELECT %n" +
                 ALL_COLUMNS +
-                "FROM staff_list %n" +
+                "FROM customer_list %n" +
                 "WHERE 1=1 %s %n" +
                 "%s %n" +
                 "LIMIT %d OFFSET %d", whereClause, orderBy, pageSize, start);
